@@ -1,7 +1,7 @@
 const io = require('socket.io-client');
 
 // Socket.io 서버의 URL을 설정합니다.
-const socket = io('http://localhost:3000');
+const socket = io();
 document.addEventListener('DOMContentLoaded', function () {
   const chatMessages = document.getElementById('chat-messages') as HTMLDivElement;
   const messgeInput = document.getElementById('messge-input') as HTMLInputElement;
