@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function joinRoom() {
+  async function joinRoom() {
     if (roomInfo) {
       roomInfo.textContent = `방 번호: ${roomNumber}`;
 
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
         room: `room:${roomNumber}`,
       };
 
-      socket.emit('joinRoom', data);
+      await socket.emit('joinRoom', data);
     } else if (dmRoomInfo) {
       dmRoomInfo.textContent = `${friendName}님과의 채팅`;
 
@@ -117,11 +117,11 @@ document.addEventListener('DOMContentLoaded', function () {
         room: `dm:${dmNumber}`,
       };
 
-      socket.emit('joinRoom', data);
+      await socket.emit('joinRoom', data);
     }
   }
 
-  function sendMessage() {
+  async function sendMessage() {
     const message = messgeInput.value;
 
     if (name !== null && roomNumber !== null) {
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
         message,
       };
 
-      socket.emit('sendMessage', data);
+      await socket.emit('sendMessage', data);
       messgeInput.value = '';
     } else if (name !== null && dmNumber !== null) {
       const data: ChatData = {
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
         message,
       };
 
-      socket.emit('sendMessage', data);
+      await socket.emit('sendMessage', data);
       messgeInput.value = '';
     }
   }
@@ -149,19 +149,19 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location.href = `../main.html?name=${name}`;
   }
 
-  function leaveRoom() {
+  async function leaveRoom() {
     if (roomNumber) {
       const data = {
         name,
         room: `room:${roomNumber}`,
       };
-      socket.emit('leaveRoom', data);
+      await socket.emit('leaveRoom', data);
     } else if (dmNumber) {
       const data = {
         name,
         room: `dm:${dmNumber}`,
       };
-      socket.emit('leaveRoom', data);
+      await socket.emit('leaveRoom', data);
     }
   }
 
