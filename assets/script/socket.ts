@@ -1,7 +1,7 @@
 const io = require('socket.io-client');
 
 document.addEventListener('DOMContentLoaded', function () {
-  const chatMessages = document.getElementById('chat-messages') as HTMLDivElement;
+  const chatMessages = document.querySelector('#chat-messages') as HTMLTextAreaElement;
   const messgeInput = document.getElementById('messge-input') as HTMLInputElement;
   const userList = document.getElementById('user-list') as HTMLDivElement;
   const currentUsers = document.getElementById('current-users') as HTMLDivElement;
@@ -94,6 +94,12 @@ document.addEventListener('DOMContentLoaded', function () {
       sendButton.addEventListener('click', () => {
         sendMessage();
       });
+
+      messgeInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
     }
 
     async function joinRoom() {
@@ -120,25 +126,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function sendMessage() {
       const message = messgeInput.value;
+      if (messgeInput.value.length > 0) {
+        if (name !== null && roomNumber !== null) {
+          const data: ChatData = {
+            name,
+            room: `room:${roomNumber}`,
+            message,
+          };
 
-      if (name !== null && roomNumber !== null) {
-        const data: ChatData = {
-          name,
-          room: `room:${roomNumber}`,
-          message,
-        };
+          await socket.emit('sendMessage', data);
+          messgeInput.value = '';
+        } else if (name !== null && dmNumber !== null) {
+          const data: ChatData = {
+            name,
+            room: `dm:${dmNumber}`,
+            message,
+          };
 
-        await socket.emit('sendMessage', data);
-        messgeInput.value = '';
-      } else if (name !== null && dmNumber !== null) {
-        const data: ChatData = {
-          name,
-          room: `dm:${dmNumber}`,
-          message,
-        };
-
-        await socket.emit('sendMessage', data);
-        messgeInput.value = '';
+          await socket.emit('sendMessage', data);
+          messgeInput.value = '';
+        }
       }
     }
 
@@ -159,9 +166,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     socket.on('userJoined', (name: string) => {
-      const joinMessage = document.createElement('div') as HTMLDivElement;
-      joinMessage.textContent = `${name}님이 입장했습니다.`;
-      chatMessages.appendChild(joinMessage);
+      // const joinMessage = document.createElement('div') as HTMLDivElement;
+      // joinMessage.textContent = `${name}님이 입장했습니다.`;
+      // chatMessages.appendChild(joinMessage);
+      chatMessages.value += `${name}님이 입장했습니다.\n`;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     });
 
     socket.on('changeUserList', (data: string) => {
@@ -184,19 +193,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     socket.on('receiveMessage', (data: ChatData) => {
-      const userName = document.createElement('div') as HTMLDivElement;
-      userName.textContent = data.name;
-      chatMessages.appendChild(userName);
+      // const userName = document.createElement('div') as HTMLDivElement;
+      // userName.textContent = data.name;
+      // chatMessages.appendChild(userName);
 
-      const message = document.createElement('div') as HTMLDivElement;
-      message.textContent = data.message;
-      chatMessages.appendChild(message);
+      // const message = document.createElement('div') as HTMLDivElement;
+      // message.textContent = data.message;
+      // chatMessages.appendChild(message);
+
+      // chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      chatMessages.value += `${data.name}\n${data.message}\n\n`;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      // const chatBox = document.querySelector('#chat-log') as HTMLTextAreaElement;
+      // chatBox.value += (`${data.name}\n${data.message}\n`)
     });
 
     socket.on('leaveMessage', (leaveName: string) => {
-      const message = document.createElement('div') as HTMLDivElement;
-      message.textContent = `${leaveName}님이 퇴장하셨습니다.`;
-      chatMessages.appendChild(message);
+      // const message = document.createElement('div') as HTMLDivElement;
+      // message.textContent = `${leaveName}님이 퇴장하셨습니다.`;
+      // chatMessages.appendChild(message);
+
+      chatMessages.value += `${leaveName}님이 퇴장하셨습니다.\n`;
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     });
   } else {
     if (logoutButton) {
