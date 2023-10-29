@@ -1,0 +1,30 @@
+.user-list-box {
+  width: 90%;
+  border: 2px solid cyan;
+  background-color: black;
+  padding: 10px;
+  margin: 10px auto;
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  font-size: 13px;
+}
+
+.user-list-info {
+  color: white;
+}
+
+.add-button {
+  background-color: cadetblue;
+  margin-left: auto;
+  min-width: 100px;
+  border: none;
+  border-radius: 10px;
+  color: black;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: lightblue;
+}

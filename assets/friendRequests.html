@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./css/users.css" />
+    <link rel="stylesheet" type="text/css" href="./css/friendRequests.css" />
+    <title>Main Page</title>
+  </head>
+  <body>
+    <div class="header">
+      <button class="nav-button" id="room-button">Rooms</button>
+      <button class="nav-button" id="user-button">Users</button>
+      <button class="nav-button" id="friend-button">Friends</button>
+      <button class="nav-button" id="logout-button">Logout</button>
+    </div>
+    <hr class="separator" />
+    <div class="main-content">
+      <div class="menu">
+        <button class="friend-button" id="request-button">수신함</button>
+        <button class="friend-button" id="friendList-button">목록</button>
+      </div>
+      <hr class="separator" />
+    </div>
+    <script type="text/javascript" src="./script/friendsMenu.js"></script>
+    <script type="text/javascript" src="./script/friendRequests.js"></script>
+    <script type="text/javascript" src="./script/socket.js"></script>
+  </body>
+</html>

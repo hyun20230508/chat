@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+  background-color: black;
+}
+
+.header {
+  background-color: black;
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-button {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px;
+}
+
+.nav-button:hover {
+  background-color: gray;
+}
+
+.separator {
+  border: 2px solid cyan;
+  width: 90%;
+}
+
+.main-content {
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+}
+
+.left-box {
+  width: 75%;
+  height: 70%;
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.room-info {
+  color: white;
+  padding-left: 20px;
+}
+
+.horizontal-line {
+  border-top: 2px solid cyan;
+  width: 100%;
+}
+
+.chat-container {
+  flex-grow: 1;
+  min-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+#chat-messages {
+  color: white;
+  height: 500px;
+}
+
+.chat-input {
+  background-color: black;
+  border: 2px solid cyan;
+  color: white;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.right-box {
+  width: 20%;
+  height: 589px;
+  background-color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+#current-users {
+  margin-bottom: 10px;
+}
+
+#user-list {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+#exit-button {
+  background-color: lightcyan;
+  border: none;
+  color: black;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#exit-button:hover {
+  background-color: lightblue;
+}

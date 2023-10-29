@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./css/chatRoom.css" />
+    <title>Main Page</title>
+  </head>
+  <body>
+    <div class="header">
+      <button class="nav-button" id="room-button">Rooms</button>
+      <button class="nav-button" id="user-button">Users</button>
+      <button class="nav-button" id="friend-button">Friends</button>
+      <button class="nav-button" id="logout-button">Logout</button>
+    </div>
+    <hr class="separator" />
+    <div class="main-content">
+      <div class="left-box">
+        <div class="room-info" id="dm-room-info">님과의 채팅</div>
+        <hr class="horizontal-line" />
+        <div class="chat-container">
+          <div id="chat-messages"></div>
+          <div><input id="messge-input" autocomplete="off" /><button id="send-button">보내기</button></div>
+        </div>
+      </div>
+      <div class="right-box">
+        <button id="exit-button">나가기</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="./script/socket.js"></script>
+  </body>
+</html>

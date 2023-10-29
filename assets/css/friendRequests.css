@@ -1,0 +1,21 @@
+.menu {
+  background-color: black;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+.friend-button {
+  background-color: black;
+  width: 50%;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px;
+  margin-left: 10%;
+}
+
+.friend-button:hover {
+  background-color: gray;
+}
